@@ -1,0 +1,9 @@
+dependencies:
+  pre:
+    - gem install rest-client
+    - gem install cutest
+    - gem install mocha
+
+test:
+  override:
+    - cutest test/localytics_test.rb
