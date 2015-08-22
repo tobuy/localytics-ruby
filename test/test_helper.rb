@@ -28,9 +28,9 @@ end
 def test_profile(params={})
   {
       attributes: {
-          '$first_name': 'Tester',
-          '$last_name': 'Localytics',
-          '$email': 'tester@localytics.com'
+          '$first_name' => 'Tester',
+          '$last_name' => 'Localytics',
+          '$email' => 'tester@localytics.com'
       },
       localytics: {
           attributes: {
@@ -47,17 +47,17 @@ end
 def profile_params
   {
       attributes: {
-          '$email': 'test@localytics.com',
-          '$first_name': 'Tester Sister',
-          '$last_name': 'Localytics'
+          '$email' => 'test@localytics.com',
+          '$first_name' => 'Tester Sister',
+          '$last_name' => 'Localytics'
       }
   }
 end
 
 def bad_request
   json = {
-      "errors" => [{
-                       "4051" => "Bad Request: The request could not be understood by the server due to malformed syntax."
+      'errors' => [{
+                       '4051' => 'Bad Request: The request could not be understood by the server due to malformed syntax.'
                    }]
   }
   RestClient::Exception.new(test_response(json, 404), 400)
