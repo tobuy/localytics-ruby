@@ -1,7 +1,8 @@
 require 'rest_client'
 require 'json'
 require 'base64'
-require_relative 'localytics/resources'
+require_relative 'localytics/profile'
+require_relative 'localytics/push'
 
 module Localytics
   class Error < StandardError
