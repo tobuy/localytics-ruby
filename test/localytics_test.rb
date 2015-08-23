@@ -14,19 +14,24 @@ setup do
   Localytics.mock_rest_client = mock
 end
 
-test 'api_base url' do
-  assert_equal 'https://profile.localytics.com/v1/profiles', Localytics::Profile.api_base
-end
-
-test 'resource url' do
-  assert_equal '', Localytics::Profile.url
-  assert_equal '/123', Localytics::Profile.url(123)
-end
-
 test 'operation show' do |mock|
   mock.expects(:get).once.with('https://profile.localytics.com/v1/profiles/123', {}).returns(test_response(test_profile))
   profile = Localytics::Profile.show 123
   assert_equal 'Tester', profile[:attributes]['$first_name'.to_sym]
+end
+
+test 'operation show in app' do |mock|
+  mock.expects(:get).once.with('https://profile.localytics.com/v1/apps/app_id/profiles/123', {}).returns(test_response(test_profile))
+  profile = Localytics::Profile.show 123, 'app_id'
+  assert_equal 'Tester', profile[:attributes]['$first_name'.to_sym]
+end
+
+test 'operation show in app global' do |mock|
+  mock.expects(:get).once.with('https://profile.localytics.com/v1/apps/app_id/profiles/123', {}).returns(test_response(test_profile))
+  Localytics::Profile.app_id = 'app_id'
+  profile = Localytics::Profile.show 123
+  assert_equal 'Tester', profile[:attributes]['$first_name'.to_sym]
+  Localytics::Profile.app_id = nil
 end
 
 test 'operation create' do |mock|
@@ -46,3 +51,23 @@ test 'operation delete' do |mock|
   profile = Localytics::Profile.delete 1234
   assert(profile.empty?)
 end
+
+test 'operation profiles' do |mock|
+  mock.expects(:get).once.with('https://profile.localytics.com/v1/customers/Isa', {}).returns(test_response(test_profiles))
+  profiles = Localytics::Profile.profiles 'Isa'
+  assert_equal 'Isa', profiles[:id]
+  assert_equal 'Isa', profiles[:profiles][0][:attributes][:name]
+end
+
+test 'operation profiles' do |mock|
+  mock.expects(:get).once.with('https://profile.localytics.com/v1/customers?email=isa@localytics.com', {}).returns(test_response(test_profiles))
+  profiles = Localytics::Profile.profiles_by_email 'isa@localytics.com'
+  assert_equal 'Isa', profiles[:id]
+  assert_equal 'Isa', profiles[:profiles][0][:attributes][:name]
+end
+
+test 'send push' do |mock|
+  mock.expects(:post).once.with('https://messaging.localytics.com/v2/push/app_id', anything).returns(test_response({}, 200))
+  Localytics::Push.push_to_customers [{alert: 'message', target: 1}], 'app_id'
+end
+

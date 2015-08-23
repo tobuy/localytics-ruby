@@ -18,8 +18,8 @@ Gem::Specification.new do |s|
   s.files = %w{
     lib/localytics.rb
     lib/localytics-ruby.rb
-    lib/localytics/resources.rb
-    lib/localytics/operations.rb
+    lib/localytics/profile.rb
+    lib/localytics/push.rb
   }
 
   s.test_files = %w{

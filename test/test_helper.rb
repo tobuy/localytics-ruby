@@ -44,6 +44,45 @@ def test_profile(params={})
   }.merge(params)
 end
 
+def test_profiles(params={})
+  {
+      'id': 'Isa',
+      'profiles': [
+          {
+              'attributes': {
+                  'name': 'Isa',
+                  'cats': ['Ofelia', 'Mittens', 'Spot', 'Schrödinger'],
+                  'age': 30,
+                  'lucky numbers': [1, 48, -100, 13],
+                  'birthday': '1983-01-01'
+              },
+              'localytics': {
+                  'attributes': {
+                      'country': 'us',
+                      'city_name': 'Boston',
+                      'last_session_date': '2015-01-15'
+                  }
+              }
+          },
+          {
+              'app_id': 'my_app',
+              'attributes': {
+                  'high score': 30,
+                  'favorite teams': ['Red Sox', 'Yankees']
+              },
+              'localytics': {
+                  'attributes': {
+                      'app_version': '3.1',
+                      'push_enabled': 1,
+                      'custom_1': 'yes'
+                  }
+              }
+          }
+      ]
+
+  }.merge(params)
+end
+
 def profile_params
   {
       attributes: {
