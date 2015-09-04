@@ -41,21 +41,21 @@ module Localytics
 
     # For :messages options please check the :push method
     def self.push_to_customers(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
-      push messages, 'customer_id', campaing_key, app_id, api_key, api_secret
+      push messages, 'customer_id', app_id, campaing_key, api_key, api_secret
     end
 
     # For :messages options please check the :push method
     def self.push_to_all_customers(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
-      push messages, 'broadcast', campaing_key, app_id, api_key, api_secret
+      push messages, 'broadcast', app_id, campaing_key, api_key, api_secret
     end
 
     # For :messages options please check the :push method
     def self.push_to_profiles(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
-      push messages, 'profile', campaing_key, app_id, api_key, api_secret
+      push messages, 'profile', app_id, campaing_key, api_key, api_secret
     end
 
     def self.push_to_audiences(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
-      push messages, 'audience_id', campaing_key, app_id, api_key, api_secret
+      push messages, 'audience_id', app_id, campaing_key, api_key, api_secret
     end
 
     private
