@@ -22,7 +22,7 @@ module Localytics
     #
     # More information on how messages can be built can be found on
     # http://docs.localytics.com/#Dev/getting-started-trans-push.html
-    def self.push(messages, target_type, app_id=nil, api_key=nil, api_secret=nil, headers={})
+    def self.push(messages, target_type, app_id, campaing_key = nil, api_key=nil, api_secret=nil, headers={})
       Localytics.request(
           api_base(app_id),
           :post,
@@ -32,7 +32,7 @@ module Localytics
           {
               messages: messages,
               target_type: target_type,
-              campaign_key: nil,
+              campaign_key: campaing_key,
               request_id: SecureRandom.uuid
           },
           headers
@@ -40,22 +40,22 @@ module Localytics
     end
 
     # For :messages options please check the :push method
-    def self.push_to_customers(messages, app_id, api_key=nil, api_secret=nil)
-      push messages, 'customer_id', app_id, api_key, api_secret
+    def self.push_to_customers(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
+      push messages, 'customer_id', campaing_key, app_id, api_key, api_secret
     end
 
     # For :messages options please check the :push method
-    def self.push_to_all_customers(messages, app_id, api_key=nil, api_secret=nil)
-      push messages, 'broadcast', app_id, api_key, api_secret
+    def self.push_to_all_customers(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
+      push messages, 'broadcast', campaing_key, app_id, api_key, api_secret
     end
 
     # For :messages options please check the :push method
-    def self.push_to_profiles(messages, app_id, api_key=nil, api_secret=nil)
-      push messages, 'profile', app_id, api_key, api_secret
+    def self.push_to_profiles(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
+      push messages, 'profile', campaing_key, app_id, api_key, api_secret
     end
 
-    def self.push_to_audiences(messages, app_id, api_key=nil, api_secret=nil)
-      push messages, 'audience_id', app_id, api_key, api_secret
+    def self.push_to_audiences(messages, app_id, campaing_key = nil, api_key=nil, api_secret=nil)
+      push messages, 'audience_id', campaing_key, app_id, api_key, api_secret
     end
 
     private

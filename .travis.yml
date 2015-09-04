@@ -10,4 +10,5 @@ deploy:
   provider: rubygems
   api_key: $RUBYGEMS_API_KEY
   on:
+    repo: tobuy/localytics-ruby
     branch: master

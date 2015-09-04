@@ -68,6 +68,6 @@ end
 
 test 'send push' do |mock|
   mock.expects(:post).once.with('https://messaging.localytics.com/v2/push/app_id', anything).returns(test_response({}, 200))
-  Localytics::Push.push_to_customers [{alert: 'message', target: 1}], 'app_id'
+  Localytics::Push.push_to_customers [{alert: 'message', target: 1}], 'customer_id', 'app_id'
 end
 
