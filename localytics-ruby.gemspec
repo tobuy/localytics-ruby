@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |s|
   s.name              = 'localytics-ruby'
-  s.version           = '0.0.1'
+  s.version           = '0.0.2'
   s.summary           = 'Ruby wrapper for Localytics API'
-  s.description       = 'API to interact with Localytics\nhttps://localytics.com/'
+  s.description       = 'API to interact with Localytics https://localytics.com/'
   s.authors           = ['Tobuy development team', 'Marcos Chicote']
   s.email             = ['support@tob.uy']
-  s.homepage          = 'https://tob.uy/'
+  s.homepage          = 'https://github.com/tobuy/localytics-ruby'
   s.files             = []
 
   s.license           = 'MIT'
