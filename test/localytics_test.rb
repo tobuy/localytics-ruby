@@ -85,6 +85,6 @@ end
 
 test 'show app attributes' do |mock|
   mock.expects(:get).once.with('https://api.localytics.com/v1/apps/umdois/attributes', {}).returns(test_response(test_apps_attributes, 200))
-  events = Localytics::App.app_attibutes('umdois')
+  events = Localytics::App.app_attributes('umdois')
   assert_equal 'Clicked Link', events[:events][0][:event_name]
 end
