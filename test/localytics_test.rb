@@ -71,3 +71,20 @@ test 'send push' do |mock|
   Localytics::Push.push_to_customers [{alert: 'message', target: 1}], 'app_id'
 end
 
+test 'show apps' do |mock|
+  mock.expects(:get).once.with('https://api.localytics.com/v1/apps', {}).returns(test_response(test_show_apps, 200))
+  apps = Localytics::App.show_apps
+  assert_equal 'App Name', apps[:_embedded][:apps][0][:name]
+end
+
+test 'show app' do |mock|
+  mock.expects(:get).once.with('https://api.localytics.com/v1/apps/umdois', {}).returns(test_response(test_show_app, 200))
+  app = Localytics::App.show_app('umdois')
+  assert_equal 'App Name', app[:name]
+end
+
+test 'show app attributes' do |mock|
+  mock.expects(:get).once.with('https://api.localytics.com/v1/apps/umdois/attributes', {}).returns(test_response(test_apps_attributes, 200))
+  events = Localytics::App.app_attibutes('umdois')
+  assert_equal 'Clicked Link', events[:events][0][:event_name]
+end
