@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name              = 'localytics-ruby'
-  s.version           = '0.0.3'
+  s.version           = '0.0.4'
   s.summary           = 'Ruby wrapper for Localytics API'
   s.description       = 'API to interact with Localytics https://localytics.com/'
   s.authors           = ['Tobuy development team', 'Marcos Chicote']
@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
     lib/localytics-ruby.rb
     lib/localytics/profile.rb
     lib/localytics/push.rb
+    lib/localytics/app.rb
   }
 
   s.test_files = %w{

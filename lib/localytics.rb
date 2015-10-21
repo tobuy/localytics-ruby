@@ -3,6 +3,7 @@ require 'json'
 require 'base64'
 require_relative 'localytics/profile'
 require_relative 'localytics/push'
+require_relative 'localytics/app'
 
 module Localytics
   class Error < StandardError
