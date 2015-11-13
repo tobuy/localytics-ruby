@@ -38,8 +38,10 @@ module Localytics
       raise Error.new('No API secret provided')
     end
 
-    payload = JSON.generate(params) if method == :post || method == :patch
-    params = nil unless method == :get
+    unless method == :get
+      payload = JSON.generate(params)
+      params = nil
+    end
 
     auth = 'Basic ' + Base64.strict_encode64("#{api_key}:#{api_secret}")
 
