@@ -4,6 +4,7 @@ require 'base64'
 require_relative 'localytics/profile'
 require_relative 'localytics/push'
 require_relative 'localytics/app'
+require_relative 'localytics/event'
 
 module Localytics
   class Error < StandardError
@@ -61,9 +62,15 @@ module Localytics
     }
 
     begin
+      return_hash = {}
       response = execute_request(options)
-      return {} if response.code == 204 and method == :delete
-      JSON.parse(response.body, :symbolize_names => true)
+      return return_hash if response.code == 204 and method == :delete
+
+      if response.body.present?
+        # Don't try to call JSON.parse on empty response body.
+        return_hash = JSON.parse(response.body, :symbolize_names => true)
+      end
+      return return_hash
     rescue RestClient::Exception => e
       handle_errors e
     end
