@@ -10,8 +10,8 @@ module Localytics
     #                     Must be integer, e.g. use 299 for $2.99.
     def self.send(app_id, customer_id, event_name, event_attributes=nil, ltv_change=nil, api_key=nil, api_secret=nil)
       raise Error.new('No APP id provided') unless app_id ||= self.app_id
-      raise Error.new('No customer_id provided') unless customer_id.present?
-      raise Error.new('No event_name provided') unless event_name.present?
+      raise Error.new('No customer_id provided') if customer_id.nil?
+      raise Error.new('No event_name provided') if event_name.nil? || event_name.empty?
 
       params = {
         schema_url:  "https://localytics-files.s3.amazonaws.com/schemas/eventsApi/v0.json",
@@ -21,8 +21,8 @@ module Localytics
         event_time:  (Time.now.to_f * 1000).to_i,
         uuid:        SecureRandom.uuid
       }
-      params[:attributes] = event_attributes if event_attributes.present?
-      params[:ltv_change] = ltv_change if ltv_change.present?
+      params[:attributes] = event_attributes if event_attributes && !event_attributes.empty?
+      params[:ltv_change] = ltv_change if ltv_change
 
       Localytics.request api_base, :post, url, api_key, api_secret, params
     end

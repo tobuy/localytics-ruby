@@ -88,3 +88,9 @@ test 'show app attributes' do |mock|
   events = Localytics::App.app_attributes('umdois')
   assert_equal 'Clicked Link', events[:events][0][:event_name]
 end
+
+test 'send event' do |mock|
+  mock.expects(:post).once.with('https://analytics.localytics.com/events/v0/uploads', anything).returns(test_response({}, 202))
+  response = Localytics::Event.send('app_id', 111111, 'event_name')
+  assert(response.empty?)
+end

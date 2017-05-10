@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
     lib/localytics/profile.rb
     lib/localytics/push.rb
     lib/localytics/app.rb
+    lib/localytics/event.rb
   }
 
   s.test_files = %w{
