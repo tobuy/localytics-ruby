@@ -4,7 +4,7 @@ module Localytics
       attr_accessor :app_id
     end
 
-    # @param event_attributes = Optional hash of up to 50 key/value attribute pairs (up to 50).
+    # @param event_attributes = Optional hash of up to 50 key/value attribute pairs.
     #                           Values must be formatted as strings.
     # @param ltv_change = Optional int representing incremental change in user's lifetime value.
     #                     Must be integer, e.g. use 299 for $2.99.
