@@ -66,7 +66,7 @@ module Localytics
       response = execute_request(options)
       return return_hash if response.code == 204 and method == :delete
 
-      if response.body.present?
+      if response.body && !response.body.empty?
         # Don't try to call JSON.parse on empty response body.
         return_hash = JSON.parse(response.body, :symbolize_names => true)
       end
