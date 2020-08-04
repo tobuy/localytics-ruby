@@ -15,7 +15,7 @@ module Localytics
       raise Error.new('No event_name provided')   if  event_name.nil? || event_name.empty?
 
       params = {
-        schema_url:  "https://localytics-files.s3.amazonaws.com/schemas/eventsApi/v0.json",
+        schema_url:  "https://localytics-files.s3.amazonaws.com/schemas/eventsApi/v1.json",
         app_uuid:    app_id,
         customer_id: customer_id.to_s,
         event_name:  event_name,
@@ -31,7 +31,7 @@ module Localytics
     private
 
     def self.api_base
-      "https://analytics.localytics.com/events/v0"
+      "https://analytics.localytics.com/events/v1"
     end
 
     def self.url
