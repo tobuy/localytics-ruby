@@ -11,7 +11,7 @@ module Localytics
     include Enumerable
     attr_accessor :errors
 
-    def initialize message, errors={}
+    def initialize(message, errors={})
       super message
       @errors = errors
     end
@@ -41,36 +41,37 @@ module Localytics
 
     unless method == :get
       payload = JSON.generate(params)
-      params = nil
+      params  = nil
     end
 
     auth = 'Basic ' + Base64.strict_encode64("#{api_key}:#{api_secret}")
 
     headers = {
-        :params => params,
-        :content_type => 'application/json',
-        :accept => 'application/json',
+        :params        => params,
+        :content_type  => 'application/json',
+        :accept        => 'application/json',
         :authorization => auth
 
     }.merge(headers)
 
     options = {
         :headers => headers,
-        :method => method,
-        :url => url,
+        :method  => method,
+        :url     => url,
         :payload => payload
     }
 
     begin
       return_hash = {}
-      response = execute_request(options)
-      return return_hash if response.code == 204 and method == :delete
+      response    = execute_request(options)
+      return return_hash  if  response.code == 204 && method == :delete
 
       if response.body && !response.body.empty?
         # Don't try to call JSON.parse on empty response body.
         return_hash = JSON.parse(response.body, :symbolize_names => true)
       end
       return return_hash
+
     rescue RestClient::Exception => e
       handle_errors e
     end
@@ -82,8 +83,8 @@ module Localytics
     RestClient::Request.execute(options)
   end
 
-  def self.handle_errors exception
-    body = JSON.parse exception.http_body
+  def self.handle_errors(exception)
+    body = JSON.parse(exception.http_body)
     raise Error.new(exception.to_s, body['errors'])
   end
 

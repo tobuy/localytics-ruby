@@ -90,7 +90,7 @@ test 'show app attributes' do |mock|
 end
 
 test 'send event' do |mock|
-  mock.expects(:post).once.with('https://analytics.localytics.com/events/v0/uploads', anything).returns(test_response({}, 202))
+  mock.expects(:post).once.with('https://analytics.localytics.com/events/v1/uploads', anything).returns(test_response({}, 202))
   response = Localytics::Event.send('app_id', 111111, 'event_name')
   assert(response.empty?)
 end
