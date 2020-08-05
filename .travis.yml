@@ -1,7 +1,7 @@
 before_script:
   - gem install rest-client
   - gem install cutest
-  - gem install mocha
+  - gem install mocha -v 1.1
 
 script:
   - cutest test/localytics_test.rb
