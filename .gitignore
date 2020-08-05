@@ -36,3 +36,9 @@ build/
 
 # IDE
 .idea/
+
+# Vim
+*.swp
+*.swo
+*.swn
+
