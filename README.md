@@ -1,5 +1,7 @@
 Tobuy
 =====
+[![Gem Version](https://badge.fury.io/rb/localytics-ruby.svg)](https://badge.fury.io/rb/localytics-ruby)
+[![Build Status](https://travis-ci.org/tobuy/localytics-ruby.svg?branch=master)](https://travis-ci.org/tobuy/localytics-ruby)
 
 Ruby wrapper for Localytics API
 
